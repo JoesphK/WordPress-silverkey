@@ -34,7 +34,7 @@ jobs:
         run: |
           aws ssm send-command \
             --targets "Key=tag:Role,Values=SampleTest" \
-            --document-name "GithubActionToSSM" \
+            --document-name "AWS-RunShellScript" \
             --comment "This Github Action should deploy to any machine with the tags from above" \
             --parameters 'commands=[
               "mkdir -p /wordpressdelta",
