@@ -16,8 +16,9 @@ jobs:
       - name: Compress folder
         run: |
           mkdir -p CompressedProject
+          CREATIONDATE=$(date -u +%Y%m%d-%H%M%S)
           tar --exclude='./CompressedProject' --exclude='.git' --exclude='.github' \
-              -czf CompressedProject/youssefwordpress.tar.gz .
+              -czf CompressedProject/${CREATIONDATE}_youssef.tar.gz .
       - name: Logging in to AWS
         uses: aws-actions/configure-aws-credentials@v2
         with:
@@ -27,5 +28,5 @@ jobs:
 
       - name: Copying repo to S3
         run: |
-              CREATIONDATE=$(date -u +%Y%m%d-%H%M%S)
-              aws s3 cp CompressedProject/youssefwordpress.tar.gz s3://youssefappawsproject/$CREATIONDATE/
+         
+              aws s3 cp CompressedProject/youssefwordpress.tar.gz s3://youssefappawsproject
