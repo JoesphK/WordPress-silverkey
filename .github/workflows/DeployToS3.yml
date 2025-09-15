@@ -1,4 +1,4 @@
-name: Press and Push
+name: DeployToS3
 
 on:
   workflow_dispatch:
