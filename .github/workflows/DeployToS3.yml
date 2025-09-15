@@ -18,6 +18,11 @@ jobs:
           mkdir -p CompressedProject
           tar --exclude='./CompressedProject' --exclude='.git' --exclude='.github' \
               -czf CompressedProject/youssefwordpress.tar.gz .
+
+  Push-To-AWS:
+      runs-on: ubuntu-latest
+      needs: compress
+      steps:
       - name: Logging in to AWS
         uses: aws-actions/configure-aws-credentials@v2
         with:
