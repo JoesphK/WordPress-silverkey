@@ -28,7 +28,7 @@ jobs:
           aws-region: us-east-1
 
       - name: Copying repo to S3
-        run: aws s3 cp CompressedProject/app_${CREATIONDATE}_youssef.tar.gz s3://youssefappawsproject
+        run: aws s3 cp CompressedProject/${CREATIONDATE}_youssef.tar.gz s3://youssefappawsproject
 
       - name: If Tag  is Role=SampleTest Deploy the update
         run: |
@@ -38,7 +38,7 @@ jobs:
             --comment "This Github Action should deploy to any machine with the tags from above" \
             --parameters 'commands=[
               "mkdir -p /wordpressdelta",
-              "aws s3 cp s3://youssefappawsproject/'${CREATIONDATE}'_youssef.tar.gz /wordpressdelta",
+              "aws s3 cp s3://youssefappawsproject/${CREATIONDATE}_youssef.tar.gz /wordpressdelta/${CREATIONDATE}_youssef.tar.gz",
               mkdir -p /wordpressdelta/'${CREATIONDATE}',
-              "tar -xzf /wordpressdelta/app_'${CREATIONDATE}'_youssef.tar.gz -C /wordpressdelta/'${CREATIONDATE}' --overwrite"
+              "tar -xzf /wordpressdelta/${CREATIONDATE}_youssef.tar.gz -C /wordpressdelta/${CREATIONDATE} --overwrite"
             ]'
