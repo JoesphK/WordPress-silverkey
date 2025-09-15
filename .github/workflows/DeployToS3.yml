@@ -16,7 +16,7 @@ jobs:
       - name: Compress folder
         run: |
           mkdir -p CompressedProject
-          tar -czf CompressedProject/youssefwordpress.tar.gz .
+          tar --exclude='./CompressedProject' -czf CompressedProject/youssefwordpress.tar.gz
 
       - name: Logging in to AWS
         uses: aws-actions/configure-aws-credentials@v2
