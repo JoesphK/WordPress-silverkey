@@ -34,6 +34,8 @@ jobs:
         run: |
           aws ssm send-command \
             --targets "Key=tag:Role,Values=SampleTest" \
+            --document-name "GithubActionToSSM" \
+            --comment "This Github Action should deploy to any machine with the tags from above" \
             --parameters 'commands=[
               "mkdir -p /wordpressdelta",
               "aws s3 cp s3://youssefappawsproject/'${CREATIONDATE}'_youssef.tar.gz /wordpressdelta",
