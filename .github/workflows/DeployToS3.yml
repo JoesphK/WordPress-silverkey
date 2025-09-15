@@ -32,5 +32,5 @@ jobs:
 
       - name: Copy to S3
         run: |
-          CREATIONDATE=$(date -u + '%Y%m%d-%H%M%S')    
+          CREATIONDATE=$(date -u +'%Y%m%d-%H%M%S')    
           aws s3 sync . s3://youssefappawsproject/$CREATIONDATE/
