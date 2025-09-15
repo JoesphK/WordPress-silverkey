@@ -28,4 +28,4 @@ jobs:
       - name: Copying repo to S3
         run: |
               CREATIONDATE=$(date -u +%Y%m%d-%H%M%S)
-              aws s3 sync . s3://youssefappawsproject/$CREATIONDATE/
+              aws s3 cp CompressedProject/youssefwordpress.tar.gz s3://youssefappawsproject/$CREATIONDATE/
