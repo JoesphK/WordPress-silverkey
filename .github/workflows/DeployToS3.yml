@@ -19,7 +19,7 @@ jobs:
           CREATIONDATE=$(date -u +%Y%m%d-%H%M%S)
           echo "CREATIONDATE=$CREATIONDATE" >> $GITHUB_ENV
           tar --exclude='./CompressedProject' --exclude='.git' --exclude='.github' \
-              -czf CompressedProject/app_${CREATIONDATE}_youssef.tar.gz .
+              -czf CompressedProject/${CREATIONDATE}_youssef.tar.gz .
       - name: Logging in to AWS
         uses: aws-actions/configure-aws-credentials@v2
         with:
