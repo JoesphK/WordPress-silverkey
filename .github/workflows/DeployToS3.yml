@@ -17,6 +17,7 @@ jobs:
         run: |
           mkdir -p CompressedProject
           CREATIONDATE=$(date -u +%Y%m%d-%H%M%S)
+          echo "CREATIONDATE=$CREATIONDATE" >> $GITHUB_ENV
           tar --exclude='./CompressedProject' --exclude='.git' --exclude='.github' \
               -czf CompressedProject/${CREATIONDATE}_youssef.tar.gz .
       - name: Logging in to AWS
