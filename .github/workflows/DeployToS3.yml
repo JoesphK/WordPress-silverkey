@@ -29,4 +29,4 @@ jobs:
       - name: Copying repo to S3
         run: |
          
-              aws s3 cp CompressedProject/youssefwordpress.tar.gz s3://youssefappawsproject
+              aws s3 cp CompressedProject/${CREATIONDATE}_youssef.tar.gz s3://youssefappawsproject
