@@ -57,5 +57,6 @@ jobs:
                 "sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport fs-07ae65a185fc36bac.efs.us-east-1.amazonaws.com:/ /var/www/wordpress/wp-content/uploads",
                 "echo 'fs-07ae65a185fc36bac.efs.us-east-1.amazonaws.com:/ /var/www/wordpress/wp-content/uploads nfs4 defaults,_netdev 0 0' | sudo tee -a /etc/fstab"
 
+
             ]'
               
