@@ -54,7 +54,7 @@ jobs:
                 "mysql -u wp_user -p password -h 10.1.0.23 -e \"CREATE USER IF NOT EXISTS '\''ReadOnlyAccess'\''@'\''%'\'' IDENTIFIED BY '\''AITechLead'\''; GRANT SELECT, INDEX, ON wordpress_db.* TO '\''ReadOnlyAccess'\''@'\''%'\''; FLUSH PRIVILEGES;\",
                 "cd /var/www/wordpress/wp-content",
                 "mkdir -p uploads",
-                "sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport fs-07ae65a185fc36bac.efs.us-east-1.amazonaws.com:/ var/www/wordpress/wp-content/uploads",
+                "sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport fs-07ae65a185fc36bac.efs.us-east-1.amazonaws.com:/ /var/www/wordpress/wp-content/uploads",
                 "sudo echo 'fs-07ae65a185fc36bac.efs.us-east-1.amazonaws.com:/ /var/www/wordpress/wp-content/uploads nfs4 nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport 0 0' | sudo tee -a /etc/fstab"
             ]'
               
