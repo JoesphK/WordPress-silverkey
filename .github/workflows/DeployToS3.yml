@@ -44,6 +44,12 @@ jobs:
                 "mkdir /var/www/wordpress",
                 "sudo chown -R www-data:www-data /var/www/wordpress",
                 "sudo chmod -R 755 /var/www/wordpress",
-                "rsync -a /wordpressdelta/'${CREATIONDATE}'/ /var/www/wordpress"
+                "rsync -a /wordpressdelta/'${CREATIONDATE}'/ /var/www/wordpress",
+                "echo '<VirtualHost *:80>\n  DocumentRoot /var/www/wordpress\n  <Directory /var/www/wordpress/>\n    AllowOverride All\n    Require all granted\n  </Directory>\n</VirtualHost>' | sudo tee /etc/apache2/sites-available/wordpress.conf",
+                "sudo a2ensite wordpress.conf",
+                "sudo a2dissite 000-default.conf",
+                "sudo a2enmod rewrite",
+                "sudo systemctl reload apache2"
+            ]'
               
               ]'
