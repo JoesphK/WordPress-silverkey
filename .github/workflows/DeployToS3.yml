@@ -50,6 +50,8 @@ jobs:
                 "sudo a2ensite wordpress.conf",
                 "sudo a2dissite 000-default.conf",
                 "sudo a2enmod rewrite",
-                "sudo systemctl reload apache2"
+                "sudo systemctl reload apache2",
+
+                "mysql -u wp_user -p password -h 10.1.0.23 -e \"CREATE USER IF NOT EXISTS '\''ReadOnlyAccess'\''@'\''%'\'' IDENTIFIED BY '\''AITechLead'\''; GRANT SELECT, INDEX, ON wordpress_db.* TO '\''ReadOnlyAccess'\''@'\''%'\''; FLUSH PRIVILEGES;\"
             ]'
               
