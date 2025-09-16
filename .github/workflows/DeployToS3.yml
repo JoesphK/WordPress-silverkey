@@ -37,12 +37,8 @@ jobs:
       - name: Save CREATIONDATE to SSM
         env:
           CREATIONDATE: ${{ env.CREATIONDATE }}
-        run: |
-          aws ssm put-parameter \
-            --name "/wordpress/creationdate" \
-            --type "String" \
-            --value "$CREATIONDATE" \
-            --overwrite
+        run: aws ssm put-parameter --name "/wordpress/creationdate" --type "String" --value "$CREATIONDATE" --overwrite
+
 
 
                 ]'
