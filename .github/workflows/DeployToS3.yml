@@ -29,13 +29,19 @@ jobs:
 
       - name: Copying repo to S3
         run: aws s3 cp CompressedProject/${CREATIONDATE}_youssef.tar.gz s3://youssefappawsproject
+      - name: Debug CREATIONDATE
+        run: |
+          echo "CREATIONDATE is: [${{ env.CREATIONDATE }}]"
 
+          
       - name: Save CREATIONDATE to SSM
+        env:
+          CREATIONDATE: ${{ env.CREATIONDATE }}
         run: |
           aws ssm put-parameter \
-            --name '/wordpress/creationdate' \
-            --type 'String' \
-            --value "${{ env.CREATIONDATE }}" \
+            --name "/wordpress/creationdate" \
+            --type "String" \
+            --value "$CREATIONDATE" \
             --overwrite
 
 
