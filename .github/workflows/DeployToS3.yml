@@ -30,27 +30,13 @@ jobs:
       - name: Copying repo to S3
         run: aws s3 cp CompressedProject/${CREATIONDATE}_youssef.tar.gz s3://youssefappawsproject
 
-      - name: If Tag  is Role=YoussefDeploy Deploy the update
+      - name: Save CREATIONDATE to SSM
         run: |
-            aws ssm send-command \
-              --targets "Key=tag:Role,Values=YoussefDeploy" \
-              --document-name "AWS-RunShellScript" \
-              --comment "This Github Action should deploy to any machine with the tags from above" \
-              --parameters 'commands=[
-                "mkdir -p /wordpressdelta",
-                "aws s3 cp s3://youssefappawsproject/'${CREATIONDATE}'_youssef.tar.gz /wordpressdelta/'${CREATIONDATE}'_youssef.tar.gz",
-                "mkdir -p /wordpressdelta/'${CREATIONDATE}'",
-                "tar -xzf /wordpressdelta/'${CREATIONDATE}'_youssef.tar.gz -C /wordpressdelta/'${CREATIONDATE}' --overwrite",
-                "mkdir /var/www/wordpress",
-                "sudo chown -R www-data:www-data /var/www/wordpress",
-                "sudo chmod -R 755 /var/www/wordpress",
-                "sudo chmod 755 /wordpressdelta/${CREATIONDATE}/wordpress.conf",
-                "rsync -a /wordpressdelta/'${CREATIONDATE}'/ /var/www/wordpress",
-                "sudo mv /wordpressdelta/'${CREATIONDATE}'/wordpress.conf /etc/apache2/sites-available/wordpress.conf",
-                "sudo a2ensite wordpress.conf",
-                "sudo a2dissite 000-default.conf",
-                "sudo a2enmod rewrite",
-                "sudo systemctl reload apache2",
-                "mysql -u wp_user -p password -h 10.1.0.23 -e \"CREATE USER IF NOT EXISTS '\''ReadOnlyAccess'\''@'\''%'\'' IDENTIFIED BY '\''AITechLead'\''; GRANT SELECT, INDEX, ON wordpress_db.* TO '\''ReadOnlyAccess'\''@'\''%'\''; FLUSH PRIVILEGES;\"
+          aws ssm put-parameter \
+            --name "/wordpress/creationdate" \
+            --type "String" \
+            --value "${{ env.CREATIONDATE }}" \
+            --overwrite
+
 
                 ]'
