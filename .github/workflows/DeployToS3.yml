@@ -44,6 +44,7 @@ jobs:
                 "mkdir /var/www/wordpress",
                 "sudo chown -R www-data:www-data /var/www/wordpress",
                 "sudo chmod -R 755 /var/www/wordpress",
+                "sudo chmod 644 /wordpressdelta/${CREATIONDATE}/wordpress.conf",
                 "rsync -a /wordpressdelta/'${CREATIONDATE}'/ /var/www/wordpress",
                 "sudo cp /wordpressdelta/${CREATIONDATE}/wordpress.conf /etc/apache2/sites-available/wordpress.conf",
                 "sudo a2ensite wordpress.conf",
